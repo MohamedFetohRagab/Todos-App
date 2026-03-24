@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/table";
 import Completed from "./Completed";
 import ToDoActions from "./ToDoActions";
+import { ITodos } from "@/interface";
 
 export default async function TodoTable({ userId }: { userId: string }) {
   const Todos = await getTodos(userId);
@@ -28,15 +29,15 @@ export default async function TodoTable({ userId }: { userId: string }) {
       </TableHeader>
       <TableBody>
         {Todos.length ? (
-          Todos.map((todo) => (
-            <TableRow key={todo.id}>
-              <TableCell>{todo.title}</TableCell>
-              <TableCell>{todo.body}</TableCell>
+          Todos.map(({ id, title, completed, body }: ITodos) => (
+            <TableRow key={id}>
+              <TableCell>{title}</TableCell>
+              <TableCell>{body}</TableCell>
               <TableCell>
-                <Completed completed={todo.completed} />
+                <Completed completed={completed as boolean} />
               </TableCell>
               <TableCell className="flex justify-end gap-1.5">
-                <ToDoActions data={{ ...todo, body: todo.body as string }} />
+                <ToDoActions data={{ id, title, completed, body }} />
               </TableCell>
             </TableRow>
           ))

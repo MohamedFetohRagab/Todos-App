@@ -35,11 +35,10 @@ const ToDoActions = ({ data }: { data: ITodos }) => {
           id={data.id}
           CreatedAt={data.CreatedAt}
           title={data.title}
-          body={data.body}
+          body={data.body as string}
           completed={data.completed}
           openForm={Open}
           setFormopen={setOpen}
-
         />
       )}
     </>

@@ -1,14 +1,13 @@
 import { ThemeProvider } from "@/app/providers/theme-provider";
-import Nav from "@/components/Nav";
 import { cn } from "@/lib/utils";
-import { ClerkProvider, Show } from "@clerk/nextjs";
+import { ClerkProvider } from "@clerk/nextjs";
 import { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
-  title: "NEXT APP",
+  title: "ToDos",
 };
 
 export default function RootLayout({
