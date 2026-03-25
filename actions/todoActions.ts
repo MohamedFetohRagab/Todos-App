@@ -4,14 +4,19 @@ import { ITodos } from "@/interface";
 import { prisma } from "../prisma/prisma";
 import { revalidatePath } from "next/cache";
 export const getTodos = async (userId: string) => {
-  return await prisma.todo.findMany({
-    orderBy: {
-      CreatedAt: "desc",
-    },
-    where: {
-      userId,
-    },
-  });
+  try {
+    return await prisma.todo.findMany({
+      orderBy: {
+        CreatedAt: "desc",
+      },
+      where: {
+        userId,
+      },
+    });
+  } catch (error) {
+    console.error("Database error:", error);
+    return [];
+  }
 };
 
 export const createTodo = async ({

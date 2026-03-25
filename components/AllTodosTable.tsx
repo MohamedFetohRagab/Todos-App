@@ -14,7 +14,7 @@ import ToDoActions from "./ToDoActions";
 import { ITodos } from "@/interface";
 
 export default async function TodoTable({ userId }: { userId: string }) {
-  const Todos = await getTodos(userId);
+  const Todos: ITodos[] = (await getTodos(userId)) || [];
 
   return (
     <Table>
@@ -28,7 +28,7 @@ export default async function TodoTable({ userId }: { userId: string }) {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {Todos.length ? (
+        {Todos && Todos.length ? (
           Todos.map(({ id, title, completed, body }: ITodos) => (
             <TableRow key={id}>
               <TableCell>{title}</TableCell>
