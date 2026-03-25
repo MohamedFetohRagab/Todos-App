@@ -30,33 +30,45 @@ export const createTodo = async ({
   completed?: boolean;
   userId: string;
 }) => {
-  await prisma.todo.create({
-    data: {
-      title,
-      body,
-      completed,
-      userId,
-    },
-  });
-  revalidatePath("/");
+  try {
+    await prisma.todo.create({
+      data: {
+        title,
+        body,
+        completed,
+        userId,
+      },
+    });
+    revalidatePath("/");
+  } catch (error) {
+    console.log(error);
+  }
 };
 export const updateTodo = async ({ completed, id, title, body }: ITodos) => {
-  await prisma.todo.update({
-    where: { id },
-    data: {
-      body,
-      completed,
-      title,
-    },
-  });
-  revalidatePath("/");
+  try {
+    await prisma.todo.update({
+      where: { id },
+      data: {
+        body,
+        completed,
+        title,
+      },
+    });
+    revalidatePath("/");
+  } catch (error) {
+    console.log(error);
+  }
 };
 export const deleteTodo = async (id: string) => {
-  await prisma.todo.delete({
-    where: {
-      id,
-    },
-  });
+  try {
+    await prisma.todo.delete({
+      where: {
+        id,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+  }
 
   revalidatePath("/");
 };
