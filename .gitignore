@@ -18,6 +18,10 @@
 /out/
 
 # production
+# Environment variables
+.env
+.env.local
+.env.production
 /build
 
 # misc

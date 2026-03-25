@@ -9,7 +9,7 @@ export default async function Home() {
     <div className="w-full h-full">
       <Nav />
       <TodoForm userId={userId} body="" title="" completed={false} />
-      <TodoTable userId={userId as string} />
+      {/* <TodoTable userId={userId as string} /> */}
     </div>
   );
 }
